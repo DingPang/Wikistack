@@ -35,4 +35,9 @@ const User = db.define('user', {
   }
 });
 
+Page.beforeValidate((userInstance, optionObject) => {
+  userInstance.slug = userInstance.title.replace(/\s+/g, '_').replace(/\W/g, '');
+  return userInstance.slug;
+})
+
 module.exports = { Page, User, db};
